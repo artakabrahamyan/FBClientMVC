@@ -1,0 +1,53 @@
+﻿@using FBClientMVC.Models
+@model FBAppInfoModel
+@{
+    ViewBag.Title = "Get comments of Facebook posted topic";
+}
+
+<h3>Providing the mandatory values and clicking on the Send button you request to connect to Facebook, to locate the posted topic, to download the comments of found topic and finally to save that data in XML file on the web server.</h3>
+
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("SendFBCall", "FBAppInfo", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <p class="text-success">@ViewBag.StatusMessage</p>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.AppID, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.AppID, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.AppID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.AppSecretKey, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.AppSecretKey, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.AppSecretKey, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PageID, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.PageID, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.PageID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.TopicFilter, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.TopicFilter, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.TopicFilter, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Get FB comments" class="btn btn-default" />
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>
